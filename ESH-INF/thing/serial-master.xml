@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="openhr20"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+        xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+    <!-- Sample Thing Type -->
+    <bridge-type id="master">
+        <label>OpenHR20 Master</label>
+        <description>Serial Master for OpenHR20 Binding</description>
+
+        <config-description>
+            <parameter-group name="port">
+                <context>communication</context>
+                <label>Port Configuration</label>
+                <description></description>
+            </parameter-group>
+            
+            <parameter name="port" type="text" required="true"
+                groupName="port">
+                <label>Serial Port</label>
+                <description>Set the serial port used to access the OpenHR20 Master</description>
+                <default></default>
+            </parameter>
+        </config-description>
+    </bridge-type>
+
+</thing:thing-descriptions>

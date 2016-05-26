@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="openhr20" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:thing="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0"
+	xsi:schemaLocation="http://eclipse.org/smarthome/schemas/thing-description/v1.0.0 http://eclipse.org/smarthome/schemas/thing-description-1.0.0.xsd">
+
+	<!-- Sample Thing Type -->
+	<thing-type id="thermostat" listed="false">
+		<supported-bridge-type-refs>
+			<bridge-type-ref id="master" />
+		</supported-bridge-type-refs>
+		<label>OpenHR20 Binding Thing</label>
+		<description>Sample thing for OpenHR20 Binding</description>
+
+		<!-- CHANNEL DEFINITIONS -->
+		<channels>
+			<channel id="current_temp" typeId="current_temp">
+				<label>Sensor (temperature)</label>
+				<properties>
+					<property name="binding:*:DecimalType">SENSOR_MULTILEVEL;type=TEMPERATURE</property>
+				</properties>
+			</channel>
+			<channel id="valve_position" typeId="valve_position">
+				<label>Valve position</label>
+				<properties>
+					<property name="binding:*:PercentType">SENSOR_MULTILEVEL;type=VALVE</property>
+				</properties>
+			</channel>
+			<channel id="thermostat_setpoint" typeId="set_temp"></channel>
+			<channel id="battery-level" typeId="system.battery-level">
+				<properties>
+					<property name="binding:*:PercentType">BATTERY</property>
+				</properties>
+			</channel>
+			<channel id="sensor_window" typeId="contact_state">
+				<label>Window Sensor</label>
+				<properties>
+					<property name="binding:*:OpenClosedType">SENSOR_BINARY,BASIC</property>
+				</properties>
+			</channel>
+			<channel id="mode" typeId="mode"></channel>
+		</channels>
+	</thing-type>
+
+	<channel-type id="valve_position" advanced="true">
+		<item-type>Number</item-type>
+		<label>Valve Position</label>
+		<description>Thermostat Valve Position</description>
+		<state pattern="%d %%" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="mode">
+		<item-type>String</item-type>
+		<label>Mode</label>
+		<description>Thermostat Mode Setting</description>
+		<tags>
+			<tag>heating</tag>
+		</tags>
+		<state pattern="%s" readOnly="false">
+			<options>
+				<option value="AUTOMATIC">AUTOMATIC</option>
+				<option value="MANUAL">MANUAL</option>
+			</options>
+		</state>
+	</channel-type>
+
+	<channel-type id="current_temp">
+		<item-type>Number</item-type>
+		<label>Current Temperature</label>
+		<description>Current room temperature</description>
+		<category>Temperature</category>
+		<tags>
+			<tag>heating</tag>
+		</tags>
+		<state pattern="%.1f °C" readOnly="true">
+		</state>
+	</channel-type>
+
+	<channel-type id="set_temp">
+		<item-type>Number</item-type>
+		<label>Set Temperature</label>
+		<description>Thermostat temperature setpoint</description>
+		<category>Temperature</category>
+		<tags>
+			<tag>heating</tag>
+		</tags>
+		<state min="4.5" max="30" step="0.5" pattern="%.1f °C" readOnly="false">
+		</state>
+	</channel-type>
+
+	<channel-type id="contact_state">
+		<item-type>Contact</item-type>
+		<label>Contact State</label>
+		<description>Contact state information</description>
+		<category>Contact</category>
+		<state pattern="%s" readOnly="true"></state>
+	</channel-type>
+
+</thing:thing-descriptions>
